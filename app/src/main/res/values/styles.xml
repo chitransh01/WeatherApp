@@ -1,0 +1,27 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowMenuStyle">@style/MenuPopup</item>
+    </style>
+    <!-- Toolbar theme -->
+    <style name="ToolBarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="titleTextAppearance">@style/TitleTextAppearance</item>
+    </style>
+    <!-- Toolbar TitleTextAppearance theme -->
+    <style name="TitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <!-- Menu toolbarPopup theme -->
+    <style name="MenuPopup" parent="@android:style/Widget.Holo.ListPopupWindow">  <!--ThemeOverlay.AppCompat.Light-->
+        <item name="android:popupBackground">@android:color/white</item>
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">@dimen/_3sdp</item>
+        <!--<item name="android:actionMenuTextColor">@color/colorWhite</item>-->
+    </style>
+</resources>
