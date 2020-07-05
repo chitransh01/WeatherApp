@@ -76,6 +76,9 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
         }
     }
 
+    /**
+     * This method is used to show alert message for no wifi connectivity
+     */
     private fun showAlertMessage() {
         try {
             DialogUtils.showAlertDialog(this,
@@ -201,24 +204,39 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.ConnectionCallbacks,
             Log.d(TAG, result)
 
             progressBar.visibility = View.VISIBLE
-            if (null != lat && null != long) {
-                val factory = WeatherViewModel.Factory(
-                    WeatherApplication.getInstance(this),
-                    lat,
-                    long,
-                    Constants.ID,
-                    Constants.APP_ID
-                )
-                val weatherViewModel =
-                    ViewModelProviders.of(this, factory).get(WeatherViewModel::class.java)
-                //                mBinding.weatherViewModel = weatherViewModel
-                observeViewModel(weatherViewModel)
-            }
+            fetchWeatherDataAsPerLocation(lat, long)
         } catch (e: Exception) {
             Log.e(TAG, "onLocationChanged: " + e.message)
         }
     }
 
+    /**
+     * This method is used to fetch weather based on location coordinates
+     *
+     * @param lat This param defines the latitude of current location
+     * @param long This param defines the longitude of current location
+     */
+    private fun fetchWeatherDataAsPerLocation(lat: Double?, long: Double?) {
+        if (null != lat && null != long) {
+            val factory = WeatherViewModel.Factory(
+                WeatherApplication.getInstance(this),
+                lat,
+                long,
+                Constants.ID,
+                Constants.APP_ID
+            )
+            val weatherViewModel =
+                ViewModelProviders.of(this, factory).get(WeatherViewModel::class.java)
+            //                mBinding.weatherViewModel = weatherViewModel
+            observeViewModel(weatherViewModel)
+        }
+    }
+
+    /**
+     * This methood is used to get observable data from API
+     *
+     * @param weatherViewModel
+     */
     private fun observeViewModel(weatherViewModel: WeatherViewModel) {
         try {
             weatherViewModel.getObservableWeatherModel()?.observe(this, Observer { weatherModel ->

@@ -8,6 +8,11 @@ class WeatherApplication : Application() {
     companion object {
         private var mInstance: WeatherApplication? = null
 
+        /**
+         * This method will return the instance of the application class
+         *
+         * @param context
+         */
         fun getInstance(context: Context): WeatherApplication {
             if (mInstance == null) {
                 mInstance = context.applicationContext as WeatherApplication

@@ -14,6 +14,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 class WeatherRepository private constructor() {
     private var apiService: APIService? = null
 
+    /**
+     * This method will used to get weather records from the API
+     *
+     * @param lat This param is the latitude of the current location
+     * @param long This param is the longitude of the current location
+     * @param id
+     * @param appId
+     *
+     * @return LiveData
+     */
     fun getWeatherDetails(
         lat: Double?,
         long: Double?,
